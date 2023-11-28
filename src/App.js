@@ -23,12 +23,24 @@ function App({ taskItems }) {
       return task;
     });
     setTasks(updatedTasks);
+  };
+
+  const editTask = (id, newName) => {
+    const editedTaskList = tasks.map((task) => {
+      // if this task has the same ID as the edited task
+      if (id === task.id) {
+        //
+        return { ...task, name: newName };
+      }
+      return task;
+    });
+    setTasks(editedTaskList);
   }
 
   const deleteTask = (id) => {
     const remainingTasks = tasks.filter((task) => id !== task.id);
     setTasks(remainingTasks);
-  }
+  };
 
   const taskList = tasks.map(({ id, name, completed }) => (
     <Todo
@@ -38,6 +50,7 @@ function App({ taskItems }) {
       key={id}
       toggleTaskCompleted={toggleTaskCompleted}
       deleteTask={deleteTask}
+      editTask={editTask}
     />
   ));
 
