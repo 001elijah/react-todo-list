@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Todo({name, completed, id}) {
+const Todo = ({name, completed, id}) => {
   return (
     <li className="todo stack-small">
       <div className="c-cb">
@@ -20,3 +20,5 @@ export default function Todo({name, completed, id}) {
     </li>
   );
 }
+
+export default Todo;
