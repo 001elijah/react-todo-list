@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import AddButton from "../AddButton/AddButton";
 
 const Form = ({ addTask }) => {
   const [name, setName] = useState("");
@@ -31,9 +32,7 @@ const Form = ({ addTask }) => {
         value={name}
         onChange={handleChange}
       />
-      <button type="submit" className="btn btn__primary btn__lg">
-        Add
-      </button>
+      <AddButton />
     </form>
   );
 };
