@@ -39,10 +39,10 @@ button {
     -webkit-font-smoothing: inherit;
     -moz-osx-font-smoothing: inherit;
     appearance: none;
-}
 
-button::-moz-focus-inner {
-    border: 0;
+    &::-moz-focus-inner {
+        border: 0;
+    }
 }
 
 button,

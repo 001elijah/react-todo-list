@@ -14,16 +14,16 @@
     border: 0.2rem solid #4d4d4d;
     cursor: pointer;
     text-transform: capitalize;
-}
 
-.btn.toggleBtn {
-    border-width: 1px;
-    border-color: #d3d3d3;
-}
+    &.toggleBtn {
+        border-width: 1px;
+        border-color: #d3d3d3;
+    }
 
-.btn.toggleBtn[aria-pressed="true"] {
-    text-decoration: underline;
-    border-color: #4d4d4d;
+    &.toggleBtn[aria-pressed="true"] {
+        text-decoration: underline;
+        border-color: #4d4d4d;
+    }
 }
 
 .btnDanger {
@@ -40,10 +40,10 @@
     display: inline-block;
     width: 100%;
     font-size: 1.9rem;
-}
 
-[class*="Lg"]:not(:last-child) {
-    margin-bottom: 1rem;
+    &:not(:last-child) {
+        margin-bottom: 1rem;
+    }
 }
 
 @include large {
@@ -99,29 +99,29 @@
     box-shadow:
         0 2px 4px 0 rgba(0, 0, 0, 0.2),
         0 2.5rem 5rem 0 rgba(0, 0, 0, 0.1);
+
+    &>* {
+        max-width: 50rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    &>form {
+        max-width: 100%;
+    }
+
+    &>h1 {
+        display: block;
+        max-width: 100%;
+        text-align: center;
+        margin: 0;
+        margin-bottom: 1rem;
+    }
 }
 
 @include small {
     .todoApp {
         padding: 4rem;
     }
-}
-
-.todoApp>* {
-    max-width: 50rem;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.todoApp>form {
-    max-width: 100%;
-}
-
-.todoApp>h1 {
-    display: block;
-    max-width: 100%;
-    text-align: center;
-    margin: 0;
-    margin-bottom: 1rem;
 }
 /* END APP STYLES */
