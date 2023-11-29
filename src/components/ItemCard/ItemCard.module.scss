@@ -1,6 +1,6 @@
-@import "./vars";
+@import "../../assets/styles/vars";
 
-.c-cb {
+.cCb {
     box-sizing: border-box;
     font-family: Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -14,8 +14,8 @@
     clear: left;
 }
 
-.c-cb>label::before,
-.c-cb>input[type="checkbox"] {
+.cCb>label::before,
+.cCb>input[type="checkbox"] {
     box-sizing: border-box;
     top: -2px;
     left: -2px;
@@ -23,7 +23,7 @@
     height: 44px;
 }
 
-.c-cb>input[type="checkbox"] {
+.cCb>input[type="checkbox"] {
     -webkit-font-smoothing: antialiased;
     cursor: pointer;
     position: absolute;
@@ -32,7 +32,7 @@
     opacity: 0;
 }
 
-.c-cb>label {
+.cCb>label {
     font-size: inherit;
     font-family: inherit;
     line-height: inherit;
@@ -43,19 +43,19 @@
     touch-action: manipulation;
 }
 
-.c-cb>label::before {
+.cCb>label::before {
     content: "";
     position: absolute;
     border: 2px solid currentcolor;
     background: transparent;
 }
 
-.c-cb>input[type="checkbox"]:focus+label::before {
+.cCb>input[type="checkbox"]:focus+label::before {
     border-width: 4px;
     outline: 3px dashed $outline-color;
 }
 
-.c-cb>label::after {
+.cCb>label::after {
     box-sizing: content-box;
     content: "";
     position: absolute;
@@ -71,6 +71,6 @@
     background: transparent;
 }
 
-.c-cb>input[type="checkbox"]:checked+label::after {
+.cCb>input[type="checkbox"]:checked+label::after {
     opacity: 1;
 }

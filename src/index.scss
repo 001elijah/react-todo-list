@@ -4,7 +4,7 @@
 @import "./assets/styles/reset";
 /*END RESETS*/
 /* GLOBAL STYLES */
-.form-group>input[type="text"] {
+.formGroup>input[type="text"] {
     display: inline-block;
     margin-top: 0.4rem;
 }
@@ -16,51 +16,43 @@
     text-transform: capitalize;
 }
 
-.btn.toggle-btn {
+.btn.toggleBtn {
     border-width: 1px;
     border-color: #d3d3d3;
 }
 
-.btn.toggle-btn[aria-pressed="true"] {
+.btn.toggleBtn[aria-pressed="true"] {
     text-decoration: underline;
     border-color: #4d4d4d;
 }
 
-.btn__danger {
+.btnDanger {
     color: #fff;
     background-color: $danger-bg-color;
     border-color: $danger-border-color;
 }
 
-.btn__filter {
+.btnFilter {
     border-color: lightgrey;
 }
 
-.btn__primary {
-    color: #fff;
-    background-color: #000;
+[class*="Lg"] {
+    display: inline-block;
+    width: 100%;
+    font-size: 1.9rem;
 }
 
-.btn-group {
-    display: flex;
-    justify-content: space-between;
+[class*="Lg"]:not(:last-child) {
+    margin-bottom: 1rem;
 }
 
-.btn-group>* {
-    flex: 1 1 49%;
+@include large {
+    [class*="Lg"] {
+        font-size: 2.4rem;
+    }
 }
 
-.btn-group>*+* {
-    margin-left: 0.8rem;
-}
-
-.label-wrapper {
-    margin: 0;
-    flex: 0 0 100%;
-    text-align: center;
-}
-
-.visually-hidden {
+.visuallyHidden {
     position: absolute !important;
     height: 1px;
     width: 1px;
@@ -75,30 +67,31 @@
     margin-bottom: 0;
 }
 
-.stack-small>*+* {
+.stackSmall>*+* {
     margin-top: 1.25rem;
 }
 
-.stack-large>*+* {
+.stackLarge>*+* {
     margin-top: 2.5rem;
 }
 
 @include small {
-    .stack-small>*+* {
+    .stackSmall>*+* {
         margin-top: 1.4rem;
     }
 
-    .stack-large>*+* {
+    .stackLarge>*+* {
         margin-top: 2.8rem;
     }
 }
 
-.stack-exception {
+.stackException {
     margin-top: 1.2rem;
 }
 
 /* END GLOBAL STYLES */
-.todoapp {
+/* APP STYLES */
+.todoApp {
     background: #fff;
     margin: 2rem 0 4rem 0;
     padding: 1rem;
@@ -109,64 +102,26 @@
 }
 
 @include small {
-    .todoapp {
+    .todoApp {
         padding: 4rem;
     }
 }
 
-.todoapp>* {
+.todoApp>* {
     max-width: 50rem;
     margin-left: auto;
     margin-right: auto;
 }
 
-.todoapp>form {
+.todoApp>form {
     max-width: 100%;
 }
 
-.todoapp>h1 {
+.todoApp>h1 {
     display: block;
     max-width: 100%;
     text-align: center;
     margin: 0;
     margin-bottom: 1rem;
 }
-
-.label__lg {
-    line-height: 1.01567;
-    font-weight: 300;
-    padding: 0.8rem;
-    margin-bottom: 1rem;
-    text-align: center;
-}
-
-.input__lg {
-    padding: 2rem;
-    border: 2px solid #000;
-}
-
-.input__lg:focus {
-    border-color: #4d4d4d;
-    box-shadow: inset 0 0 0 2px;
-}
-
-[class*="__lg"] {
-    display: inline-block;
-    width: 100%;
-    font-size: 1.9rem;
-}
-
-[class*="__lg"]:not(:last-child) {
-    margin-bottom: 1rem;
-}
-
-@include large {
-    [class*="__lg"] {
-        font-size: 2.4rem;
-    }
-}
-
-/* Todo item styles */
-@import "./assets/styles/todoItem";
-/* CHECKBOX STYLES */
-@import "./assets/styles/checkbox";
+/* END APP STYLES */

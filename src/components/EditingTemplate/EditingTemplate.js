@@ -2,6 +2,7 @@ import React from "react";
 import CancelButton from "../CancelButton/CancelButton";
 import SaveButton from "../SaveButton/SaveButton";
 import ButtonGroup from "../ButtonGroup/ButtonGroup";
+import s from "./EditingTemplate.module.scss";
 
 const EditingTemplate = ({
   value,
@@ -24,14 +25,14 @@ const EditingTemplate = ({
   };
 
   return (
-    <form className="stack-small" onSubmit={handleSubmit}>
-      <div className="form-group">
-        <label className="todo-label" htmlFor={id}>
+    <form className="stackSmall" onSubmit={handleSubmit}>
+      <div className="formGroup">
+        <label className="todoLabel" htmlFor={id}>
           New name for {value}
         </label>
         <input
           id={id}
-          className="todo-text"
+          className={s.todoText}
           type="text"
           value={newValue}
           onChange={handleChange}

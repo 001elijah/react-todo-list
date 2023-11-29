@@ -2,6 +2,7 @@ import React from "react";
 import EditButton from "../EditButton/EditButton";
 import DeleteButton from "../DeleteButton/DeleteButton";
 import ButtonGroup from "../ButtonGroup/ButtonGroup";
+import ItemCard from "../ItemCard/ItemCard";
 
 const ViewTemplate = ({
   name,
@@ -13,18 +14,13 @@ const ViewTemplate = ({
   editButtonRef,
 }) => {
   return (
-    <div className="stack-small">
-      <div className="c-cb">
-        <input
-          id={id}
-          type="checkbox"
-          defaultChecked={completed}
-          onChange={() => toggleTaskCompleted(id)}
-        />
-        <label className="todo-label" htmlFor={id}>
-          {name}
-        </label>
-      </div>
+    <div className="stackSmall">
+      <ItemCard
+        id={id}
+        name={name}
+        completed={completed}
+        onChange={() => toggleTaskCompleted(id)}
+      />
       <ButtonGroup>
         <EditButton
           name={name}

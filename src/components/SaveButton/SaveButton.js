@@ -2,9 +2,9 @@ import React from "react";
 
 const SaveButton = ({ value }) => {
   return (
-    <button type="submit" className="btn btn__primary todo-edit">
+    <button type="submit" className="btn btnPrimary todoEdit">
       Save
-      <span className="visually-hidden">new name for {value}</span>
+      <span className="visuallyHidden">new name for {value}</span>
     </button>
   );
 };

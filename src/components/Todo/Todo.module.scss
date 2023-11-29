@@ -1,0 +1,9 @@
+.todo {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    &>* {
+        flex: 0 0 100%;
+    }
+}

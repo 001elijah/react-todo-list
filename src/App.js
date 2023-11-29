@@ -4,6 +4,10 @@ import FilterButton from "./components/FilterButton/FilterButton";
 import Form from "./components/Form/Form";
 import Todo from "./components/Todo/Todo";
 import usePrevious from "./utils/hooks/usePrevious";
+import TaskList from "./components/TaskList/TaskList";
+import Heading from "./components/Heading/Heading";
+import FilterList from "./components/FilterList/FilterList";
+import Logo from "./components/Logo/Logo";
 
 const FILTER_MAP = {
   All: () => true,
@@ -54,12 +58,12 @@ function App({ taskItems }) {
 
   const taskList = tasks
     .filter(FILTER_MAP[filter])
-    .map((task) => (
+    .map(({ id, name, completed }) => (
       <Todo
-        id={task.id}
-        name={task.name}
-        completed={task.completed}
-        key={task.id}
+        id={id}
+        name={name}
+        completed={completed}
+        key={id}
         toggleTaskCompleted={toggleTaskCompleted}
         deleteTask={deleteTask}
         editTask={editTask}
@@ -89,19 +93,12 @@ function App({ taskItems }) {
   }, [tasks.length, prevTaskLength]);
 
   return (
-    <div className="todoapp stack-large">
-      <h1>TodoList</h1>
+    <div className="todoApp stackLarge">
+      <Logo />
       <Form addTask={addTask} />
-      <div className="filters btn-group stack-exception">{filterList}</div>
-      <h2 id="list-heading" tabIndex="-1" ref={listHeadingRef}>
-        {headingText}
-      </h2>
-      <ul
-        className="todo-list stack-large stack-exception"
-        aria-labelledby="list-heading"
-      >
-        {taskList}
-      </ul>
+      <FilterList filterList={filterList} />
+      <Heading listHeadingRef={listHeadingRef} headingText={headingText} />
+      <TaskList taskList={taskList} />
     </div>
   );
 }

@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import usePrevious from "../../utils/hooks/usePrevious";
 import EditingTemplate from "../EditingTemplate/EditingTemplate";
 import ViewTemplate from "../ViewTemplate/ViewTemplate";
+import s from "./Todo.module.scss";
 
 const Todo = ({
   name,
@@ -29,7 +30,7 @@ const Todo = ({
   }, [wasEditing, isEditing]);
 
   return (
-    <li className="todo">
+    <li className={s.todo}>
       {isEditing ? (
         <EditingTemplate
           value={name}

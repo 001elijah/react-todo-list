@@ -2,9 +2,9 @@ import React from "react";
 
 const CancelButton = ({ value, onClick }) => {
   return (
-    <button type="button" className="btn todo-cancel" onClick={onClick}>
+    <button type="button" className="btn todoCancel" onClick={onClick}>
       Cancel
-      <span className="visually-hidden">renaming {value}</span>
+      <span className="visuallyHidden">renaming {value}</span>
     </button>
   );
 };
