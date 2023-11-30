@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { nanoid } from "nanoid";
+import { useDispatch, useSelector } from "react-redux";
 import FilterButton from "./components/FilterButton/FilterButton";
 import Form from "./components/Form/Form";
 import Todo from "./components/Todo/Todo";
@@ -8,6 +8,15 @@ import TaskList from "./components/TaskList/TaskList";
 import Heading from "./components/Heading/Heading";
 import FilterList from "./components/FilterList/FilterList";
 import Logo from "./components/Logo/Logo";
+import Loader from "./components/Loader/Loader";
+import {
+  deleteTodo,
+  getTodos,
+  patchTodo,
+  postTodo,
+} from "./redux/operations/todosOperations";
+import { selectTodos } from "./redux/selectors/todosSelectors";
+import { toast } from "react-toastify";
 
 const FILTER_MAP = {
   All: () => true,
@@ -17,51 +26,55 @@ const FILTER_MAP = {
 
 const FILTER_NAMES = Object.keys(FILTER_MAP);
 
-function App({ taskItems }) {
-  const [tasks, setTasks] = useState(taskItems);
+function App() {
+  const dispatch = useDispatch();
+  const {
+    todos: tasks = localStorage.getItem("persist:todos")
+      ? localStorage.getItem("persist:todos")
+      : [],
+  } = useSelector(selectTodos);
   const [filter, setFilter] = useState("All");
 
-  const addTask = (name) => {
-    const newTask = { id: `todo-${nanoid()}`, name, completed: false };
-    setTasks([...tasks, newTask]);
+  useEffect(() => {
+    tasks.length === 0 && dispatch(getTodos());
+  }, [tasks.length, dispatch]);
+
+  const addTask = (title) => {
+    const newTask = { title, completed: false };
+    dispatch(postTodo(newTask));
   };
 
   const toggleTaskCompleted = (id) => {
-    const updatedTasks = tasks.map((task) => {
+    tasks.forEach((task) => {
       // if this task has the same ID as the edited task
       if (id === task.id) {
         // use object spread to make a new object
         // whose `completed` prop has been inverted
-        return { ...task, completed: !task.completed };
+        dispatch(patchTodo({ ...task, completed: !task.completed }));
       }
-      return task;
     });
-    setTasks(updatedTasks);
   };
 
-  const editTask = (id, newName) => {
-    const editedTaskList = tasks.map((task) => {
+  const editTask = (id, newTitle) => {
+    tasks.forEach(async (task) => {
       // if this task has the same ID as the edited task
       if (id === task.id) {
-        //
-        return { ...task, name: newName };
+        await dispatch(patchTodo({ ...task, title: newTitle }));
+        toast("Edit success");
       }
-      return task;
     });
-    setTasks(editedTaskList);
   };
 
   const deleteTask = (id) => {
-    const remainingTasks = tasks.filter((task) => id !== task.id);
-    setTasks(remainingTasks);
+    dispatch(deleteTodo(id));
   };
 
   const taskList = tasks
     .filter(FILTER_MAP[filter])
-    .map(({ id, name, completed }) => (
+    .map(({ id, title, completed }) => (
       <Todo
         id={id}
-        name={name}
+        title={title}
         completed={completed}
         key={id}
         toggleTaskCompleted={toggleTaskCompleted}
@@ -93,13 +106,16 @@ function App({ taskItems }) {
   }, [tasks.length, prevTaskLength]);
 
   return (
-    <div className="todoApp stackLarge">
-      <Logo />
-      <Form addTask={addTask} />
-      <FilterList filterList={filterList} />
-      <Heading listHeadingRef={listHeadingRef} headingText={headingText} />
-      <TaskList taskList={taskList} />
-    </div>
+    <>
+      <Loader />
+      <div className="todoApp stackLarge">
+        <Logo />
+        <Form addTask={addTask} />
+        <FilterList filterList={filterList} />
+        <Heading listHeadingRef={listHeadingRef} headingText={headingText} />
+        <TaskList taskList={taskList} />
+      </div>
+    </>
   );
 }
 

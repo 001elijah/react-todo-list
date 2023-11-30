@@ -5,7 +5,7 @@ import ButtonGroup from "../ButtonGroup/ButtonGroup";
 import ItemCard from "../ItemCard/ItemCard";
 
 const ViewTemplate = ({
-  name,
+  title,
   id,
   completed,
   toggleTaskCompleted,
@@ -17,17 +17,17 @@ const ViewTemplate = ({
     <div className="stackSmall">
       <ItemCard
         id={id}
-        name={name}
+        title={title}
         completed={completed}
         onChange={() => toggleTaskCompleted(id)}
       />
       <ButtonGroup>
         <EditButton
-          name={name}
+          title={title}
           editButtonRef={editButtonRef}
           onClick={() => setEditing(true)}
         />
-        <DeleteButton name={name} onClick={() => deleteTask(id)} />
+        <DeleteButton title={title} onClick={() => deleteTask(id)} />
       </ButtonGroup>
     </div>
   );

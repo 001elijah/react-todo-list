@@ -5,7 +5,7 @@ import ViewTemplate from "../ViewTemplate/ViewTemplate";
 import s from "./Todo.module.scss";
 
 const Todo = ({
-  name,
+  title,
   completed,
   id,
   toggleTaskCompleted,
@@ -13,7 +13,7 @@ const Todo = ({
   editTask,
 }) => {
   const [isEditing, setEditing] = useState(false);
-  const [newName, setNewName] = useState("");
+  const [newTitle, setNewTitle] = useState(title);
 
   const editFieldRef = useRef(null);
   const editButtonRef = useRef(null);
@@ -33,17 +33,17 @@ const Todo = ({
     <li className={s.todo}>
       {isEditing ? (
         <EditingTemplate
-          value={name}
+          value={title}
           id={id}
-          newValue={newName}
-          setNewValue={setNewName}
+          newValue={newTitle}
+          setNewValue={setNewTitle}
           editFieldRef={editFieldRef}
           setEditing={setEditing}
           editItem={editTask}
         />
       ) : (
         <ViewTemplate
-          name={name}
+          title={title}
           id={id}
           completed={completed}
           toggleTaskCompleted={toggleTaskCompleted}

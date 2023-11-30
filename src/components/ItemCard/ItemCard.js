@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./ItemCard.module.scss";
 
-const ItemCard = ({ id, name, completed, onChange }) => {
+const ItemCard = ({ id, title, completed, onChange }) => {
   return (
     <div className={s.cCb}>
       <input
@@ -11,7 +11,7 @@ const ItemCard = ({ id, name, completed, onChange }) => {
         onChange={onChange}
       />
       <label className="todoLabel" htmlFor={id}>
-        {name}
+        {title}
       </label>
     </div>
   );

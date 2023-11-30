@@ -2,19 +2,22 @@ import React, { useState } from "react";
 import clsx from "clsx";
 import AddButton from "../AddButton/AddButton";
 import s from "./Form.module.scss";
+import { toast } from "react-toastify";
 
 const Form = ({ addTask }) => {
-  const [name, setName] = useState("");
+  const [title, setTitle] = useState("");
 
   const handleChange = (e) => {
-    setName(e.target.value);
+    setTitle(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (name) {
-      addTask(name);
-      setName("");
+    if (title) {
+      addTask(title);
+      setTitle("");
+    } else {
+      toast("Specify what needs to be done")
     }
   };
 
@@ -31,7 +34,7 @@ const Form = ({ addTask }) => {
         className={clsx(["input"], [s.inputLg])}
         name="text"
         autoComplete="off"
-        value={name}
+        value={title}
         onChange={handleChange}
       />
       <AddButton />

@@ -4,7 +4,7 @@ const SaveButton = ({ value }) => {
   return (
     <button type="submit" className="btn btnPrimary todoEdit">
       Save
-      <span className="visuallyHidden">new name for {value}</span>
+      <span className="visuallyHidden">new title for {value}</span>
     </button>
   );
 };
