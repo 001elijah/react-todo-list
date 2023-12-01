@@ -6,7 +6,7 @@ axios.defaults.baseURL = "https://jsonplaceholder.typicode.com/todos";
 //------------------------Todos----------------------//
 
 export const getTodosAPI = () => {
-  return axios.get().then(({ data }) => data);
+  return axios.get("/").then(({ data }) => data);
 };
 
 export const postTodoAPI = ({ title, completed = false }) => {

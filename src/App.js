@@ -9,6 +9,7 @@ import Heading from "./components/Heading/Heading";
 import FilterList from "./components/FilterList/FilterList";
 import Logo from "./components/Logo/Logo";
 import Loader from "./components/Loader/Loader";
+import Pagination from "./components/Pagination/Pagination";
 import {
   deleteTodo,
   getTodos,
@@ -25,6 +26,7 @@ const FILTER_MAP = {
 };
 
 const FILTER_NAMES = Object.keys(FILTER_MAP);
+const TASKS_PER_PAGE = 4;
 
 function App() {
   const dispatch = useDispatch();
@@ -34,10 +36,11 @@ function App() {
       : [],
   } = useSelector(selectTodos);
   const [filter, setFilter] = useState("All");
+  const [currentPage, setCurrentPage] = useState(1);
 
-  useEffect(() => {
-    tasks.length === 0 && dispatch(getTodos());
-  }, [tasks.length, dispatch]);
+  const indexOfLastTask = currentPage * TASKS_PER_PAGE;
+  const indexOfFirstTask = indexOfLastTask - TASKS_PER_PAGE;
+  const currentTasks = tasks.slice(indexOfFirstTask, indexOfLastTask);
 
   const addTask = (title) => {
     const newTask = { title, completed: false };
@@ -45,7 +48,7 @@ function App() {
   };
 
   const toggleTaskCompleted = (id) => {
-    tasks.forEach((task) => {
+    currentTasks.forEach((task) => {
       // if this task has the same ID as the edited task
       if (id === task.id) {
         // use object spread to make a new object
@@ -56,7 +59,7 @@ function App() {
   };
 
   const editTask = (id, newTitle) => {
-    tasks.forEach(async (task) => {
+    currentTasks.forEach(async (task) => {
       // if this task has the same ID as the edited task
       if (id === task.id) {
         await dispatch(patchTodo({ ...task, title: newTitle }));
@@ -69,7 +72,9 @@ function App() {
     dispatch(deleteTodo(id));
   };
 
-  const taskList = tasks
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const taskList = currentTasks
     .filter(FILTER_MAP[filter])
     .map(({ id, title, completed }) => (
       <Todo
@@ -92,8 +97,8 @@ function App() {
     />
   ));
 
-  const tasksNoun = taskList.length !== 1 ? "tasks" : "task";
-  const headingText = `${taskList.length} ${tasksNoun} remaining`;
+  const tasksNoun = tasks.length !== 1 ? "tasks" : "task";
+  const headingText = `${tasks.length} ${tasksNoun} remaining`;
 
   const listHeadingRef = useRef(null);
 
@@ -105,6 +110,10 @@ function App() {
     }
   }, [tasks.length, prevTaskLength]);
 
+  useEffect(() => {
+    tasks.length === 0 && dispatch(getTodos());
+  }, [tasks.length, dispatch]);
+
   return (
     <>
       <Loader />
@@ -114,6 +123,14 @@ function App() {
         <FilterList filterList={filterList} />
         <Heading listHeadingRef={listHeadingRef} headingText={headingText} />
         <TaskList taskList={taskList} />
+        <Pagination
+          onPageChange={paginate}
+          totalCount={tasks.length}
+          siblingCount={1}
+          currentPage={currentPage}
+          pageSize={TASKS_PER_PAGE}
+          className={"paginationBar"}
+        />
       </div>
     </>
   );
