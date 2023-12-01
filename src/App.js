@@ -40,7 +40,9 @@ function App() {
 
   const indexOfLastTask = currentPage * TASKS_PER_PAGE;
   const indexOfFirstTask = indexOfLastTask - TASKS_PER_PAGE;
-  const currentTasks = tasks.slice(indexOfFirstTask, indexOfLastTask);
+  const currentTasks = tasks
+    .filter(FILTER_MAP[filter])
+    .slice(indexOfFirstTask, indexOfLastTask);
 
   const addTask = (title) => {
     const newTask = { title, completed: false };
@@ -75,7 +77,6 @@ function App() {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const taskList = currentTasks
-    .filter(FILTER_MAP[filter])
     .map(({ id, title, completed }) => (
       <Todo
         id={id}
@@ -98,7 +99,7 @@ function App() {
   ));
 
   const tasksNoun = tasks.length !== 1 ? "tasks" : "task";
-  const headingText = `${tasks.length} ${tasksNoun} remaining`;
+  const headingText = `Total ${tasks.length} ${tasksNoun}`;
 
   const listHeadingRef = useRef(null);
 
@@ -125,7 +126,7 @@ function App() {
         <TaskList taskList={taskList} />
         <Pagination
           onPageChange={paginate}
-          totalCount={tasks.length}
+          totalCount={tasks.filter(FILTER_MAP[filter]).length}
           siblingCount={1}
           currentPage={currentPage}
           pageSize={TASKS_PER_PAGE}
