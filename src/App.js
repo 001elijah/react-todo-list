@@ -31,9 +31,7 @@ const TASKS_PER_PAGE = 4;
 function App() {
   const dispatch = useDispatch();
   const {
-    todos: tasks = localStorage.getItem("persist:todos")
-      ? localStorage.getItem("persist:todos")
-      : [],
+    todos: tasks = [],
   } = useSelector(selectTodos);
   const [filter, setFilter] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
