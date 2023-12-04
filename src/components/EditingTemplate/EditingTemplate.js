@@ -4,6 +4,7 @@ import CancelButton from "../CancelButton/CancelButton";
 import SaveButton from "../SaveButton/SaveButton";
 import ButtonGroup from "../ButtonGroup/ButtonGroup";
 import s from "./EditingTemplate.module.scss";
+import { toast } from "react-toastify";
 
 const EditingTemplate = ({
   value,
@@ -20,9 +21,13 @@ const EditingTemplate = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    editItem(id, newValue);
-    setNewValue("");
-    setEditing(false);
+    if (value !== newValue) {
+      editItem(id, newValue);
+      setNewValue("");
+      setEditing(false);
+      return
+    }
+    toast("Title is the same")
   };
 
   return (
