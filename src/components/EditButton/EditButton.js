@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const EditButton = ({ title, editButtonRef, onClick }) => {
   return (
@@ -6,6 +7,12 @@ const EditButton = ({ title, editButtonRef, onClick }) => {
       Edit <span className="visuallyHidden">{title}</span>
     </button>
   );
+};
+
+EditButton.propTypes = {
+  title: PropTypes.string.isRequired,
+  editButtonRef: PropTypes.object.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default EditButton;

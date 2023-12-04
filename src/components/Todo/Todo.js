@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import PropTypes from "prop-types";
 import usePrevious from "../../utils/hooks/usePrevious";
 import EditingTemplate from "../EditingTemplate/EditingTemplate";
 import ViewTemplate from "../ViewTemplate/ViewTemplate";
@@ -54,6 +55,15 @@ const Todo = ({
       )}
     </li>
   );
+};
+
+Todo.propTypes = {
+  title: PropTypes.string.isRequired,
+  completed: PropTypes.bool.isRequired,
+  id: PropTypes.number.isRequired,
+  toggleTaskCompleted: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired,
+  editTask: PropTypes.func.isRequired,
 };
 
 export default Todo;

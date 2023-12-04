@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const FilterButton = ({ name, isPressed, setFilter }) => {
   return (
@@ -13,6 +14,12 @@ const FilterButton = ({ name, isPressed, setFilter }) => {
       <span className="visuallyHidden"> tasks</span>
     </button>
   );
+};
+
+FilterButton.propTypes = {
+  name: PropTypes.string.isRequired,
+  isPressed: PropTypes.bool.isRequired,
+  setFilter: PropTypes.func.isRequired,
 };
 
 export default FilterButton;

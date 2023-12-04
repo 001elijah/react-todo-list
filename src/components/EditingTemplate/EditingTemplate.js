@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import CancelButton from "../CancelButton/CancelButton";
 import SaveButton from "../SaveButton/SaveButton";
 import ButtonGroup from "../ButtonGroup/ButtonGroup";
@@ -45,6 +46,16 @@ const EditingTemplate = ({
       </ButtonGroup>
     </form>
   );
+};
+
+EditingTemplate.propTypes = {
+  value: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+  newValue: PropTypes.string.isRequired,
+  editFieldRef: PropTypes.object.isRequired,
+  setEditing: PropTypes.func.isRequired,
+  setNewValue: PropTypes.func.isRequired,
+  editItem: PropTypes.func.isRequired,
 };
 
 export default EditingTemplate;

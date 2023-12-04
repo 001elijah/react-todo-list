@@ -1,19 +1,18 @@
 import React from "react";
+import PropTypes from "prop-types";
 import clsx from "clsx";
 import { usePagination, DOTS } from "../../utils/hooks/usePagination";
 import s from "./Pagination.module.scss";
 import { nanoid } from "nanoid";
 
-const Pagination = (props) => {
-  const {
-    onPageChange,
-    totalCount,
-    siblingCount = 1,
-    currentPage,
-    pageSize,
-    className,
-  } = props;
-
+const Pagination = ({
+  onPageChange,
+  totalCount,
+  siblingCount = 1,
+  currentPage,
+  pageSize,
+  className,
+}) => {
   const paginationRange = usePagination({
     currentPage,
     totalCount,
@@ -95,6 +94,15 @@ const Pagination = (props) => {
       </li>
     </ul>
   );
+};
+
+Pagination.propTypes = {
+  onPageChange: PropTypes.func.isRequired,
+  totalCount: PropTypes.number.isRequired,
+  siblingCount:PropTypes.number,
+  currentPage: PropTypes.number.isRequired,
+  pageSize: PropTypes.number.isRequired,
+  className: PropTypes.string.isRequired,
 };
 
 export default Pagination;

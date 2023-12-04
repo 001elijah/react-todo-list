@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import clsx from "clsx";
 import AddButton from "../AddButton/AddButton";
 import s from "./Form.module.scss";
@@ -40,6 +41,10 @@ const Form = ({ addTask }) => {
       <AddButton />
     </form>
   );
+};
+
+Form.propTypes = {
+  addTask: PropTypes.func.isRequired
 };
 
 export default Form;

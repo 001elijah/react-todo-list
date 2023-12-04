@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import EditButton from "../EditButton/EditButton";
 import DeleteButton from "../DeleteButton/DeleteButton";
 import ButtonGroup from "../ButtonGroup/ButtonGroup";
@@ -31,6 +32,16 @@ const ViewTemplate = ({
       </ButtonGroup>
     </div>
   );
+};
+
+ViewTemplate.propTypes = {
+  title: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+  completed: PropTypes.bool.isRequired,
+  toggleTaskCompleted: PropTypes.func.isRequired,
+  setEditing: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired,
+  editButtonRef: PropTypes.object.isRequired,
 };
 
 export default ViewTemplate;

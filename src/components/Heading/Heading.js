@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Heading = ({ listHeadingRef, headingText }) => {
   return (
@@ -6,6 +7,11 @@ const Heading = ({ listHeadingRef, headingText }) => {
       {headingText}
     </h2>
   );
+};
+
+Heading.propTypes = {
+  listHeadingRef: PropTypes.object.isRequired,
+  headingText: PropTypes.string.isRequired,
 };
 
 export default Heading;
