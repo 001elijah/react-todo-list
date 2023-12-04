@@ -97,7 +97,9 @@ function App() {
   ));
 
   const tasksNoun = tasks.length !== 1 ? "tasks" : "task";
-  const headingText = `Total ${tasks.length} ${tasksNoun}`;
+  const headingText = `${filter} ${
+    tasks.filter(FILTER_MAP[filter]).length
+  } ${tasksNoun}`;
 
   const listHeadingRef = useRef(null);
 
